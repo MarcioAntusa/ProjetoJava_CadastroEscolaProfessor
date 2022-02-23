@@ -1,0 +1,34 @@
+-- Database: faculdade_BD
+
+CREATE DATABASE "faculdade_BD"
+    WITH 
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1;
+
+-- Table: escola
+
+CREATE TABLE escola (
+	nome_escola VARCHAR (50) UNIQUE NOT NULL,
+	telefone_escola VARCHAR (20) UNIQUE NOT NULL,
+	email_escola VARCHAR (50) UNIQUE NOT NULL,
+	endereco_escola VARCHAR (50) UNIQUE NOT NULL,
+	id_escola SERIAL PRIMARY KEY
+);
+
+-- Table: Professor
+
+CREATE TABLE professor (
+	id_prof SERIAL PRIMARY KEY,
+	mat_prof INTEGER UNIQUE NOT NULL,
+	nome_prof VARCHAR (50) NOT NULL,
+	telefone_prof VARCHAR (20) UNIQUE NOT NULL, 
+	email_prof VARCHAR (50) UNIQUE NOT NULL, 
+	endereco_prof VARCHAR (50) UNIQUE NOT NULL, 
+	titulacao_prof VARCHAR (20) NOT NULL, 
+	id_escola INTEGER NOT NULL,
+	FOREIGN KEY (id_escola) REFERENCES escola (id_escola)
+);
